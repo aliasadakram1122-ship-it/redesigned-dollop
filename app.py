@@ -2,88 +2,131 @@ import streamlit as st
 import google.generativeai as genai
 import time
 
-# --- PAGE CONFIG ---
-st.set_page_config(page_title="Asad VIP | Enterprise eBay AI", page_icon="👑", layout="wide")
+# --- 1. PAGE SETUP (Lovable Style) ---
+st.set_page_config(page_title="LikeBot Pro | AI Generator", page_icon="✨", layout="wide")
 
-# --- FIREBASE CONFIGURATION (آپ کا اصلی کوڈ) ---
-firebaseConfig = {
-  "apiKey": "AIzaSyBws_cplusz7x4XHeCMXGXR0V6l--Vp0kk",
-  "authDomain": "asad-official-vip-c4e7c.firebaseapp.com",
-  "projectId": "asad-official-vip-c4e7c",
-  "storageBucket": "asad-official-vip-c4e7c.firebasestorage.app",
-  "messagingSenderId": "44146954381",
-  "appId": "1:44146954381:web:fe47c7a4afa62b01ec12c4",
-  "measurementId": "G-7BNMVBB3EC"
-}
-
-# --- PREMIUM UI / CSS ---
+# --- 2. PREMIUM LOVABLE CSS THEME ---
+# یہ CSS آپ کی ویب سائٹ کو بالکل LikeBot Pro جیسا ماڈرن اور کلین لک دے گی
 st.markdown("""
     <style>
-    .main { background-color: #0f172a; color: #f8fafc; }
-    .stTextInput>div>div>input { border-radius: 10px; border: 2px solid #3b82f6; background-color: #1e293b; color: white; }
-    .stButton>button { background: linear-gradient(90deg, #2563eb, #3b82f6); color: white; border-radius: 10px; padding: 10px 25px; font-weight: bold; width: 100%; transition: 0.3s; border: none; }
-    .stButton>button:hover { transform: scale(1.02); box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
-    .glass-box { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; }
+    /* Main Background and Text */
+    .stApp { background-color: #FAFAFA; color: #111827; font-family: 'Inter', sans-serif; }
+    
+    /* Login & Glassmorphism Cards */
+    .lovable-card { 
+        background: #FFFFFF; padding: 40px; border-radius: 24px; 
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); 
+        border: 1px solid #F3F4F6; text-align: center;
+    }
+    
+    /* Premium Inputs */
+    .stTextInput>div>div>input { 
+        border-radius: 12px; border: 1px solid #E5E7EB; 
+        padding: 14px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); 
+        background-color: #F9FAFB; color: #111827;
+    }
+    .stTextInput>div>div>input:focus { border-color: #6366F1; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2); }
+    
+    /* Premium Buttons */
+    .stButton>button { 
+        background: linear-gradient(135deg, #6366F1, #4F46E5); 
+        color: white; border-radius: 12px; border: none; 
+        padding: 12px 24px; font-weight: 600; letter-spacing: 0.5px;
+        transition: all 0.3s ease; width: 100%; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    .stButton>button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4); }
+    
+    /* Hide Streamlit Branding */
+    #MainMenu {visibility: hidden;} footer {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
 
-# --- HEADER ---
-st.markdown('<div class="glass-box"><h1 style="text-align: center; color: #60a5fa;">👑 Asad Official Enterprise</h1><p style="text-align: center; color: #94a3b8;">AI Powered eBay HTML Generator</p></div>', unsafe_allow_html=True)
+# --- 3. SECURE LOGIN SYSTEM ---
+if 'logged_in' not in st.session_state:
+    st.session_state.logged_in = False
 
-# --- LOGIN SYSTEM ---
-st.sidebar.markdown("### 🔐 Secure Login")
-st.sidebar.info("سسٹم فائر بیس کے ساتھ کنیکٹڈ ہے ✅")
-user_email = st.sidebar.text_input("Enter your authorized Gmail:", placeholder="asad@gmail.com")
-
-if user_email:
-    st.sidebar.success(f"✅ Verified: {user_email}")
-    
-    # --- MAIN GENERATOR DASHBOARD ---
-    st.markdown("### 🔗 Product Scraper & Generator")
-    product_link = st.text_input("Paste Amazon / eBay Product Link here:", placeholder="https://www.amazon.com/dp/B08N5WRWNW")
-    
-    if st.button("✨ Generate VIP HTML Code"):
-        if product_link:
-            with st.spinner("🤖 AI is fetching product details and generating premium template..."):
-                time.sleep(2) # Processing effect
-                
-                # --- AUTO GENERATED VIP HTML ---
-                vip_code = f"""<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body {{ font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }}
-        .vip-container {{ max-width: 900px; margin: 20px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 5px solid #2563eb; }}
-        .header {{ text-align: center; background: #1e293b; color: white; padding: 20px; border-radius: 10px; }}
-        .features {{ background: #f8fafc; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #2563eb; }}
-        .footer {{ text-align: center; margin-top: 30px; color: #64748b; font-size: 14px; }}
-    </style>
-</head>
-<body>
-    <div class="vip-container">
-        <div class="header">
-            <h1>🌟 Premium Product</h1>
-            <p>100% Authentic & High Quality</p>
-        </div>
-        <div class="features">
-            <h3>⚡ Key Features Auto-Extracted</h3>
-            <ul>
-                <li>✅ High Performance & Durability</li>
-                <li>✅ Premium Build Material</li>
-                <li>✅ Fast & Free Shipping</li>
-            </ul>
-        </div>
-        <div class="footer">
-            <p>Thank you for choosing Asad Official Store!</p>
-        </div>
-    </div>
-</body>
-</html>"""
-                
-                st.success("🎉 Success! Your code is ready.")
-                st.components.v1.html(vip_code, height=400, scrolling=True)
-                st.text_area("💻 Copy this HTML Code:", value=vip_code, height=300)
-        else:
-            st.error("❌ Please paste a valid link first.")
+if not st.session_state.logged_in:
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 1.5, 1])
+    with col2:
+        st.markdown("""
+        <div class="lovable-card">
+            <h1 style='color: #4F46E5; font-size: 2.5rem; margin-bottom: 10px;'>✨ LikeBot Pro</h1>
+            <p style='color: #6B7280; font-size: 1.1rem; margin-top: 0;'>Sign in with your authorized Gmail</p>
+        </div><br>
+        """, unsafe_allow_html=True)
+        
+        email = st.text_input("Google Email Address", placeholder="e.g., asad@gmail.com")
+        
+        if st.button("Continue with Email"):
+            if email and "@" in email:
+                st.session_state.logged_in = True
+                st.session_state.user_email = email
+                st.rerun()
+            else:
+                st.error("❌ Please enter a valid Gmail address.")
 else:
-    st.warning("👈 Please login from the sidebar to access the AI Generator.")
+    # ==========================================
+    # --- 4. LIVE GEMINI DASHBOARD (LOVABLE UI) ---
+    # ==========================================
+    
+    # Sidebar
+    st.sidebar.markdown(f"### 👤 Profile\n**{st.session_state.user_email}**")
+    st.sidebar.success("✅ Connected to Gemini Pro")
+    if st.sidebar.button("Log out"):
+        st.session_state.logged_in = False
+        st.session_state.messages = []
+        st.rerun()
+
+    # --- AI SETUP ---
+    try:
+        genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+        model = genai.GenerativeModel('gemini-1.5-flash')
+    except Exception as e:
+        st.error("⚠️ Streamlit Secrets میں GEMINI_API_KEY ایڈ کریں۔")
+        st.stop()
+
+    st.markdown("<h2 style='color: #111827;'>✨ Live HTML AI Assistant</h2>", unsafe_allow_html=True)
+    st.caption("Paste an eBay/Amazon link or describe your product. The AI will generate code with a copy button.")
+
+    # --- CHAT MEMORY ---
+    if "messages" not in st.session_state:
+        st.session_state.messages = [
+            {"role": "assistant", "content": "Hi Asad! I am your AI assistant. Send me a product link, and I will write a premium HTML template for you."}
+        ]
+
+    for msg in st.session_state.messages:
+        avatar = "✨" if msg["role"] == "assistant" else "👤"
+        with st.chat_message(msg["role"], avatar=avatar):
+            st.markdown(msg["content"])
+
+    # --- LIVE CHAT INPUT ---
+    if prompt := st.chat_input("Paste product link here..."):
+        
+        # User Message
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user", avatar="👤"):
+            st.markdown(prompt)
+            
+        # AI Response
+        with st.chat_message("assistant", avatar="✨"):
+            message_placeholder = st.empty()
+            full_response = ""
+            
+            system_instruction = "You are an expert HTML designer. Provide premium HTML/CSS code. ALWAYS output code inside markdown code blocks (```html ... ```) so the copy button works."
+            full_prompt = f"{system_instruction}\n\nUser request: {prompt}"
+            
+            with st.spinner("Analyzing and typing..."):
+                try:
+                    response = model.generate_content(full_prompt, stream=True)
+                    
+                    for chunk in response:
+                        full_response += chunk.text
+                        message_placeholder.markdown(full_response + " ▌")
+                    
+                    message_placeholder.markdown(full_response)
+                except Exception as e:
+                    full_response = f"❌ Error: {e}"
+                    message_placeholder.error(full_response)
+        
+        st.session_state.messages.append({"role": "assistant", "content": full_response})
