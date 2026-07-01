@@ -22,7 +22,7 @@ else:
     st.title("🤖 Live Gemini AI")
     
     # یہاں اپنی API Key ڈالیں (صرف ایک بار)
-    api_key = "AIzaSy..." # اپنی اصلی API Key یہاں پیسٹ کریں
+    api_key = "AQ.Ab8RN6J6yT3ZmKpblIm8xRtOTNuDGZ9nRRzoqGGot8oE10Eg4g" # اپنی اصلی API Key یہاں پیسٹ کریں
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel('gemini-1.5-flash')
 
